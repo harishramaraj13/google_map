@@ -216,8 +216,14 @@ const result = document.querySelector("#result")
 
 document.querySelector("#share").addEventListener("click", () => {
     console.log("hello")
+        const datatosend = {message: "hello harish edited data is sent"};
+        // const datatosend = {"hello something happening"};
+        senddata(datatosend);
   findmycoord()
 })
+  function senddata(data){
+    window.webkit.messageHandlers.pwaHandler.postMessage(data);
+     }
 function findmycoord(){
   if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
