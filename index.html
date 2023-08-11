@@ -1,26 +1,43 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map</title>
+    <style>
+        #map{
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>GOOGLE MAPS</h1>
+    <div id="map"></div>
+<script>
+    function initMap(){
+        var options = {
+            center:{lat:12.9716,lng:77.5946},
+            zoom:8
+        }
+        var map = new google.maps.Map(document.getElementById('map'),options);
+    }
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqpgr4MCboMasBvW3KRgOIqB36zKNemwA&callback=initMap">
+
+    </script>
+</body>
+</html> -->
+
+
 <!doctype html>
 
 <html>
     <!-- <script src="index.js"></script> -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-
-
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOOGLE MAPS VANILLA</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
@@ -54,121 +71,3 @@
     <script src="index.js"></script>
   </body>
 </html>
-
-<script>
-// var poscoord = useState();
-// const [poscoord, setOrigin] = useState({ lat: 23.6238, lng: 90.5 });
-const http = new XMLHttpRequest()
-const result = document.querySelector("#result")
-
-document.querySelector("#share").addEventListener("click", () => {
-    console.log("hello")
-  findmycoord()
-})
-function findmycoord(){
-  if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((position) => {
-          console.log(position.coords.latitude,position.coords.longitude)
-          // const poscoord = useState({ lat: position.coords.latitude, lng: position.coords.longitude});
-          var poscoord = position.coords.latitude+","+position.coords.longitude
-          console.log(poscoord)
-      },
-      (err) => {
-          alert(err.message)
-      })
-  }
-  else{
-      alert("geolocation is not supported")
-  }
-}
-
- 
-  function initMap() {
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
-      center:{lat:12.9716,lng:77.5946},
-    });
-  
-    directionsRenderer.setMap(map);
-  
-    const card = document.getElementById("pac-card");
-    const input = document.getElementById("pac-input");
-    const curr = document.getElementById("pac-curr");
-    const options = {
-      fields: ["formatted_address", "geometry", "name"],
-      strictBounds: false,
-    };
-  
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
-  
-    const autocomplete = new google.maps.places.Autocomplete(input, options);
-    const autocomplete1 = new google.maps.places.Autocomplete(curr, options);
-
-    autocomplete.bindTo("bounds", map);
-    autocomplete1.bindTo("bounds", map);
-  
-    const infowindow = new google.maps.InfoWindow();
-    const infowindowContent = document.getElementById("infowindow-content");
-  
-    infowindow.setContent(infowindowContent);
-  
-    const marker = new google.maps.Marker({
-      map,
-      anchorPoint: new google.maps.Point(0, -29),
-    });
-  
-    autocomplete.addListener("place_changed", () => {
-      infowindow.close();
-      marker.setVisible(false);
-  
-      const place = autocomplete.getPlace();
-  
-      if (!place.geometry || !place.geometry.location) {
-        window.alert("No details available for input: '" + place.name + "");
-        return;
-      }
-  
-      // If the place has a geometry, then present it on a map.
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(10);
-      }
-  
-      marker.setPosition(place.geometry.location);
-      marker.setVisible(true);
-      infowindowContent.children["place-name"].textContent = place.name;
-      infowindowContent.children["place-address"].textContent = place.formatted_address;
-      infowindow.open(map, marker);
-    });
-
-    const onChangeHandler = function () {
-      calculateAndDisplayRoute(directionsService, directionsRenderer);
-    };
-  
-    document.getElementById("pac-input").addEventListener("change", onChangeHandler);
-  }
-  
-  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-    directionsService
-      .route({
-        origin: {
-          // query: poscoord,
-          query: document.getElementById("pac-curr").value,
-        },
-        destination: {
-          query: document.getElementById("pac-input").value,
-        },
-        travelMode: google.maps.TravelMode.DRIVING,
-      })
-      .then((response) => {
-        directionsRenderer.setDirections(response);
-      })
-      .catch((e) => window.alert("Directions request failed due to " + status));
-  }  
-  document.get
-  window.initMap = initMap;
-</script>
