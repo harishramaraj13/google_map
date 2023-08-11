@@ -69,6 +69,10 @@
     text-overflow: ellipsis;
     width: 300px;
   }
+#share {
+        margin-left: 12px;
+    padding: 0 11px 0 13px;
+}
   
   #pac-input:focus {
     border-color: #4d90fe;
