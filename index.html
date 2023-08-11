@@ -2,7 +2,9 @@
 
 <html>
     <!-- <script src="index.js"></script> -->
-        <meta charset="utf-8" />
+    <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
@@ -19,8 +21,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-  <head>
     <title>GOOGLE MAPS VANILLA</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
@@ -56,7 +56,8 @@
 </html>
 
 <script>
-  // var poscoord
+// var poscoord = useState();
+// const [poscoord, setOrigin] = useState({ lat: 23.6238, lng: 90.5 });
 const http = new XMLHttpRequest()
 const result = document.querySelector("#result")
 
@@ -68,7 +69,8 @@ function findmycoord(){
   if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
           console.log(position.coords.latitude,position.coords.longitude)
-          var poscoord = (position.coords.latitude) +" "+ (position.coords.longitude)
+          // const poscoord = useState({ lat: position.coords.latitude, lng: position.coords.longitude});
+          var poscoord = position.coords.latitude+","+position.coords.longitude
           console.log(poscoord)
       },
       (err) => {
@@ -154,6 +156,7 @@ function findmycoord(){
     directionsService
       .route({
         origin: {
+          // query: poscoord,
           query: document.getElementById("pac-curr").value,
         },
         destination: {
@@ -166,5 +169,6 @@ function findmycoord(){
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
   }  
+  document.get
   window.initMap = initMap;
 </script>
