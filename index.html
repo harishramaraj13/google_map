@@ -65,6 +65,10 @@ document.querySelector("#share").addEventListener("click", () => {
     console.log("share location button is clicked")
   findmycoord()
 })
+window.addEventListener('message', event => {
+const message = event.data;
+    console.log('Received message from ios: ', message);
+});
 function findmycoord(){
   if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
