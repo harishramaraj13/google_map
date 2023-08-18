@@ -177,7 +177,6 @@ function findmycoord(){
     directionsService
       .route({
         origin: {
-          // query: poscoord,
           query: document.getElementById("pac-curr").value,
         },
         destination: {
@@ -189,7 +188,8 @@ function findmycoord(){
         directionsRenderer.setDirections(response);
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
+      document.getElementById("pac-input").value = "route function";
   }  
-  // document.get
+  document.get
   window.initMap = initMap;
 </script>
