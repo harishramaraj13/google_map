@@ -32,7 +32,12 @@
       <br>
       <input id="pac-input" type="text" placeholder="Enter Destination" />
       <br>
-      <button id="share">share my location</button>
+      <br>
+      <div>      
+        <button id="share">share my location</button>
+        <button id="directions">directions</button>
+      </div>
+
     </div>
     <div class="pac-card" id="pac-card">
       <!-- <div>
@@ -66,6 +71,11 @@ document.querySelector("#share").addEventListener("click", () => {
     console.log("share location button is clicked")
   findmycoord()
 })
+// document.querySelector("#directions").addEventListener("click", () => {
+//     console.log("directions button is clicked")
+//     calculateAndDisplayRoute(directionsService, directionsRenderer);
+  
+// })
 function findmycoord(){
   if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
@@ -149,12 +159,18 @@ function findmycoord(){
       infowindow.open(map, marker);
     });
 
-    const onChangeHandler = function () {
-      calculateAndDisplayRoute(directionsService, directionsRenderer);
-    };
+    // const onChangeHandler = function () {
+    //   calculateAndDisplayRoute(directionsService, directionsRenderer);
+    // };
   
-    document.getElementById("pac-input").addEventListener("change", onChangeHandler);
-    document.getElementById("pac-curr").addEventListener("change", onChangeHandler);
+    // document.getElementById("pac-input").addEventListener("change", onChangeHandler);
+    // document.getElementById("pac-curr").addEventListener("change", onChangeHandler);
+
+    document.querySelector("#directions").addEventListener("click", () => {
+    console.log("directions button is clicked")
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  
+})
   }
   
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
@@ -173,7 +189,6 @@ function findmycoord(){
         directionsRenderer.setDirections(response);
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
-      document.getElementById("pac-input").value = "inside route function";
   }  
   // document.get
   window.initMap = initMap;
