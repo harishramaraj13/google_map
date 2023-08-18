@@ -1,7 +1,6 @@
 <!doctype html>
 
 <html>
-    <!-- <script src="index.js"></script> -->
     <link rel="stylesheet" href="index.css">
   <head>
     <meta charset="utf-8" />
@@ -62,8 +61,6 @@
 </html>
 
 <script>
-// var poscoord = useState();
-// const [poscoord, setposcoord] = React.useState({ lat: 23.6238, lng: 90.5 });
 const http = new XMLHttpRequest()
 const result = document.querySelector("#result")
 
@@ -71,11 +68,7 @@ document.querySelector("#share").addEventListener("click", () => {
     console.log("share location button is clicked")
   findmycoord()
 })
-// document.querySelector("#directions").addEventListener("click", () => {
-//     console.log("directions button is clicked")
-//     calculateAndDisplayRoute(directionsService, directionsRenderer);
-  
-// })
+
 function findmycoord(){
   if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
@@ -159,13 +152,6 @@ function findmycoord(){
       infowindow.open(map, marker);
     });
 
-    // const onChangeHandler = function () {
-    //   calculateAndDisplayRoute(directionsService, directionsRenderer);
-    // };
-  
-    // document.getElementById("pac-input").addEventListener("change", onChangeHandler);
-    // document.getElementById("pac-curr").addEventListener("change", onChangeHandler);
-
     document.querySelector("#directions").addEventListener("click", () => {
     console.log("directions button is clicked")
     calculateAndDisplayRoute(directionsService, directionsRenderer);
@@ -188,8 +174,6 @@ function findmycoord(){
         directionsRenderer.setDirections(response);
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
-      document.getElementById("pac-input").value = "route function";
   }  
-  document.get
   window.initMap = initMap;
 </script>
