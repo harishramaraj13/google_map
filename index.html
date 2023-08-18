@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html>
-    <script src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
     <link rel="stylesheet" href="index.css">
   <head>
     <meta charset="utf-8" />
@@ -27,9 +27,9 @@
   </head>
   <body>
     <div class="pac-card" id="pac-card">
-      <div>
+      <!-- <div>
         <div id="title">Search Bar</div>
-      </div>
+      </div> -->
       <div id="pac-container">
         <br>
         <input id="pac-curr" type="text" placeholder="Enter current location" />
@@ -65,10 +65,6 @@ document.querySelector("#share").addEventListener("click", () => {
     console.log("share location button is clicked")
   findmycoord()
 })
-window.addEventListener('message', event => {
-const message = event.data;
-    console.log('Received message from ios: ', message);
-});
 function findmycoord(){
   if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
@@ -157,6 +153,7 @@ function findmycoord(){
     };
   
     document.getElementById("pac-input").addEventListener("change", onChangeHandler);
+    document.getElementById("pac-curr").addEventListener("change", onChangeHandler);
   }
   
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
@@ -176,6 +173,6 @@ function findmycoord(){
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
   }  
-  document.get
+  // document.get
   window.initMap = initMap;
 </script>
