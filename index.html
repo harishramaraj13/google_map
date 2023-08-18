@@ -173,6 +173,7 @@ function findmycoord(){
         directionsRenderer.setDirections(response);
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
+      document.getElementById("pac-input").value = "inside route function";
   }  
   // document.get
   window.initMap = initMap;
